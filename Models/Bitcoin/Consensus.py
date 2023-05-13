@@ -2,7 +2,9 @@ import numpy as np
 from InputsConfig import InputsConfig as p
 from Models.Bitcoin.Node import Node
 from Models.Consensus import Consensus as BaseConsensus
+from Models.Bitcoin.ChainConsensus import group_chain_complexity as gcc
 import random
+import math
 
 class Consensus(BaseConsensus):
 
@@ -12,9 +14,25 @@ class Consensus(BaseConsensus):
     """
     def Protocol(miner):
         ##### Start solving a fresh PoW on top of last block appended #####
+        ##GROUPCHAIN###
         TOTAL_HASHPOWER = sum([miner.hashPower for miner in p.NODES])
         hashPower = miner.hashPower/TOTAL_HASHPOWER
-        return random.expovariate(hashPower * 1/p.Binterval)
+        groupComplexity = gcc()
+        pow_generator = (random.expovariate(hashPower*(1/p.Binterval)))
+        print((pow_generator+groupComplexity)/random.randint(8, 12))
+        return ((pow_generator+groupComplexity)/random.randint(8, 12))
+        ##GROUPCHAIN ENDS###
+
+
+        # n=1000;
+        # m=30;
+        # logn=math.log(n, 10)
+        # logm=math.log(m, 10)
+
+        # print((((n*logn)/random.randint(20,30))+2*m*logm)*(0.3))
+        # return ((((n*logn)/random.randint(20,30))+2*m*logm)*(0.3))
+
+
 
 
     """

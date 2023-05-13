@@ -7,7 +7,7 @@ class InputsConfig:
     2 : Ethereum model
         3 : AppendableBlock model
     """
-    model = 3
+    model = 1
 
     ''' Input configurations for the base model '''
     if model == 0:
@@ -56,7 +56,7 @@ class InputsConfig:
         Tsize = 0.000546  # The average transaction size  in MB
 
         ''' Node Parameters '''
-        Nn = 3  # the total number of nodes in the network
+        Nn = 30 # the total number of nodes in the network
         NODES = []
         from Models.Bitcoin.Node import Node
         # here as an example we define three nodes by assigning a unique id for each one + % of hash (computing) power
